@@ -5,17 +5,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 EXEC_FILE="./src/ademco.py"
 CONFIG_FILE="envisakit-config.json"
 
-if ! [ -d "$DIR/venv" ] ; then
-	echo "You must set up your virtualenv in $DIR/venv before running this command."
-	exit 1
-fi
-
-# Activate the virtualenv
-source $DIR/venv/bin/activate
-
-# Navigate to directory
-pushd "$DIR" &> /dev/null
-
 # Issue command
 if [ -f "$DIR/$CONFIG_FILE" ] ; then
 	$EXEC_FILE $@
