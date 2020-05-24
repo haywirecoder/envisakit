@@ -63,7 +63,7 @@ Configuration sample:
 {
 	"host": "envisalink",
 	"port": 4025,
-	"password": "1234"
+	"password": "user"
 }
 
 ```
