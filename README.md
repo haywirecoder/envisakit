@@ -3,6 +3,7 @@
 EnvisaKit is a command-line interface for the [Eyez-On Envisalink](http://www.eyezon.com) module with Honeywell Vista panels. It allows you to arm and disarm the alarm system, as well as custom commands.
 
 **Note**: This project _is not_ compatible with DSC security panels.
+** Updated for newest version of python
 
 # HomeKit and Siri
 
