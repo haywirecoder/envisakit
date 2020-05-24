@@ -41,24 +41,24 @@ class AdemcoServerConnection:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         # Connect to envisalink
-        print >> sys.stderr, "Connecting to %s:%s" % (self.host, str(self.port))
+        print ( "Connecting to %s:%s" % (self.host, str(self.port)),file=sys.stderr)
         server_address = (self.host, self.port)
         self.sock.connect(server_address)
 
         # Verify challenge
         data = self.sock.recv(8)
-        if data.strip().lower() != 'login:'.lower():
+        
+        if data.strip().lower() != str.encode('login:', 'utf-8').lower():
             raise Exception("Connection failed - Invalid challenge")
 
         # Send login
-        login_phrase = self.password + '\r\n'
+        login_phrase =str.encode(self.password + '\r\n')
         self.sock.sendall(login_phrase)
 
         # Determine response
         data = self.sock.recv(4)
-
-        if data.strip().lower() == 'OK'.lower():
-            print >> sys.stderr, "Connected"
+        if data.strip().lower() == str.encode('OK','utf-8').lower():
+            # print ( "Connected")
             self.connection_cycle()
         else:
             raise Exception("Connection failed - Invalid code")
@@ -81,20 +81,19 @@ class AdemcoServerConnection:
 
             if data is None:
                 return
-
             elif len(data) > 0:
-                # print >> sys.stderr, "Received %d bytes from server" % len(data)
-                for response_line in data.split('\r\n'):
+                # print ( "Received %d bytes from server" % len(data))
+                for response_line in data.decode().split('\r\n'):
                     self._add_response(response_line.strip())
 
             # Send data
             if sending_commands:
-                print >> sys.stderr, "Sending command: " + self.commands[-1]
-                self.sock.sendall(self.commands[-1] + '\r\n')
+                print ("Sending command: " + self.commands[-1],file=sys.stderr)
+                self.sock.sendall(str.encode(self.commands[-1] + '\r\n','utf-8'))
                 self.commands.pop()
 
         except Exception as e:
-            print >> sys.stderr, "Network exception: " + str(e)
+            print ("Network exception: " + str(e),file=sys.stderr)
             self.disconnect()
 
     def disconnect(self):
@@ -105,5 +104,5 @@ class AdemcoServerConnection:
         try:
             self.connect_and_login()
         except Exception as e:
-            print >> sys.stderr, "Connection failed: " + str(e)
+            print ( "Connection failed: " + str(e),file=sys.stderr)
             self.state = self.STATE_DISCONNECTED

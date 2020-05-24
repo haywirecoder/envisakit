@@ -28,7 +28,7 @@ class AdemcoServer:
         (COMMAND_TEST, "test", "5", False, True),
         # (COMMAND_CODE, "code", "8", True, True),
         (COMMAND_ARM_AWAY, "arm", "2", False, True),
-        (COMMAND_ARM_STAY, "partial", "3", False, True),
+        (COMMAND_ARM_STAY, "stay", "3", False, True),
         (COMMAND_ARM_NIGHT, "night", "33", False, True),
         (COMMAND_ARM_INSTANT, "instant", "7", False, True),
         (COMMAND_ARM_MAX, "max", "4", False, True),

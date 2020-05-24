@@ -220,7 +220,7 @@ class AdemcoResponse:
 
         if not response_string.endswith('$') or not response_string.startswith('%'):
             if len(response_string) > 0:
-                print >> sys.stderr, "[Warning] Received invalid response: " + str(response_string)
+                print ("[Warning] Received invalid response: " + str(response_string), file=sys.stderr)
             return False
 
         self.response_data = response_string[1:len(response_string) - 1].split(',')
@@ -230,28 +230,28 @@ class AdemcoResponse:
 
             # We have detected an update response. Ensure that it is the correct size.
             if len(self.response_data) != self.LENGTH_UPDATE:
-                print >> sys.stderr, "[Warning] Received update, but invalid format: " + str(response_string)
+                print ("[Warning] Received update, but invalid format: " + str(response_string), file=sys.stderr)
                 return False
 
-            print >> sys.stderr, "Update: " + self.update_text()
+            print ("Update: " + self.update_text(), file=sys.stderr)
 
             return True
 
         elif response_type == self.RESPONSE_ZONE_CHANGE:
-            print >> sys.stderr, "Received zone change... but not handled yet"
+            print ("Received zone change... but not handled yet", file=sys.stderr)
             return True
 
         elif response_type == self.RESPONSE_PARTITION_STATE:
-            print >> sys.stderr, "Received partition state... but not handled yet"
+            print ("Received partition state... but not handled yet", file=sys.stderr)
             return True
 
         elif response_type == self.RESPONSE_CID_EVENT:
-            print >> sys.stderr, "Received CID event... but not handled yet"
+            print ("Received CID event... but not handled yet", file=sys.stderr)
             return True
 
         elif response_type == self.RESPONSE_TIMER_DUMP:
-            print >> sys.stderr, "Received timer dump... but not handled yet"
+            print ("Received timer dump... but not handled yet", file=sys.stderr)
             return True
         else:
-            print >> sys.stderr, "[Warning] Received unknown response type: " + str(response_string)
+            print ("[Warning] Received unknown response type: " + str(response_string), file=sys.stderr)
             return False
