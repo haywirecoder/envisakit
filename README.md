@@ -11,20 +11,16 @@ Connect EnvisaKit to HomeKit in order to control your alarm panel through Siri.
 
 1. Install EnvisaKit (see below)
 2. Install [HomeBridge](https://github.com/nfarina/homebridge)
-3. Install the [homebridge-envisakit plugin](https://github.com/mklips0/homebridge-envisakit)
+3. Install the [homebridge-envisakit plugin]
 
 # Installation
 
 ```
 
 # Clone the repository
-$ git clone 'https://github.com/mklips0/envisakit.git'
+$ git clone 'https://github.com/haywirecoder/envisakit.git'
 $ cd envisakit
 
-# Create virtual env and install packages
-$ virtualenv venv
-$ source venv/bin/activate
-$ pip install -r requirements.txt
 
 # Configure EnvisaKit (see Configuration section)
 $ cp envisakit-config.json.sample envisakit-config.json
